@@ -56,4 +56,5 @@ public class LoginPage extends BasePage {
         String expectedMessage = "Epic sadface: Sorry, this user has been locked out.";
         return errorMessage.isDisplayed() && errorMessage.getText().equals(expectedMessage);
     }
+
 }

@@ -81,6 +81,7 @@ public class LoginSteps {
     public void theUserClicksTheLogoutButton() {
         System.out.println("Clicking the logout button");
         homePage.clickMenuButton();
+       // homePage.handleJavaScriptAlertIfPresent();
         homePage.clickLogoutLink();
     }
 
@@ -117,7 +118,30 @@ public class LoginSteps {
     @Then("The User should be redirected to the Homepage with issues")
     public void theUserShouldBeRedirectedToTheHomepageWithIssues() {
         System.out.println("Verifying redirection to Homepage with issues");
+        homePage.handleJavaScriptAlertIfPresent();
         Assert.assertTrue(homePage.isHomePageLogoDisplayed());
         Assert.assertTrue(driver.getCurrentUrl().contains("/inventory"));
+    }
+
+    @When("The User enters a performance glitch user username and password")
+    public void theUserEntersAPerformanceGlitchUserUsernameAndPassword() {
+        System.out.println("Entering performance glitch user username and password");
+        String performanceUsername = ConfigReader.getProperty("performanceGlitchUsername");
+        String performancePassword = ConfigReader.getProperty("performanceGlitchPassword");
+        loginPage.enterUsername(performanceUsername);
+        loginPage.enterPassword(performancePassword);
+    }
+
+    @Then("The User should be redirected to the Homepage after a delay")
+    public void theUserShouldBeRedirectedToTheHomepageAfterADelay() {
+        System.out.println("Verifying redirection to Homepage after a delay");
+        // Check for delay
+        long startTime = System.currentTimeMillis();
+        homePage.handleJavaScriptAlertIfPresent();
+        Assert.assertTrue(homePage.isHomePageLogoDisplayed());
+        Assert.assertTrue(driver.getCurrentUrl().contains("/inventory"));
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
+        System.out.println("Login redirection delay: " + elapsedTime + " ms");
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage extends BasePage {
 
@@ -32,7 +33,17 @@ public class HomePage extends BasePage {
     public void clickLogoutLink() {
         // Implementation for clicking the logout link
         WebElement logoutLink = driver.findElement(By.id("logout_sidebar_link"));
-        wait.until(ExpectedConditions.visibilityOf(logoutLink));
+        wait.until(ExpectedConditions.elementToBeClickable(logoutLink));
         logoutLink.click();
+    }
+    public void handleJavaScriptAlertIfPresent() {
+        try {
+            new WebDriverWait(driver, java.time.Duration.ofSeconds(5))
+                .until(ExpectedConditions.alertIsPresent());
+            driver.switchTo().alert().accept();
+            System.out.println("JavaScript alert accepted.");
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoAlertPresentException e) {
+            // No alert present, do nothing
+        }
     }
 }

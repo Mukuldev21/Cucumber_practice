@@ -35,3 +35,9 @@ Feature: Login Functionality
     When The User enters a problem user username and password
     And The User clicks the login button
     Then The User should be redirected to the Homepage with issues
+
+  Scenario: Login as a performance glitch user
+    Given The User is on the Login page
+    When The User enters a performance glitch user username and password
+    And The User clicks the login button
+    Then The User should be redirected to the Homepage after a delay
