@@ -29,3 +29,9 @@ Feature: Login Functionality
     When The User enters a locked out username and password
     And The User clicks the login button
     Then A locked out error message should be displayed
+
+  Scenario: Login as a problem user
+    Given The User is on the Login page
+    When The User enters a problem user username and password
+    And The User clicks the login button
+    Then The User should be redirected to the Homepage with issues

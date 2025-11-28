@@ -104,4 +104,20 @@ public class LoginSteps {
         loginPage.enterUsername(lockedOutUsername);
         loginPage.enterPassword(lockedOutPassword);
     }
+
+    @When("The User enters a problem user username and password")
+    public void theUserEntersAProblemUserUsernameAndPassword() {
+        System.out.println("Entering problem user username and password");
+        String problemUsername = ConfigReader.getProperty("problemUsername");
+        String problemPassword = ConfigReader.getProperty("problemPassword");
+        loginPage.enterUsername(problemUsername);
+        loginPage.enterPassword(problemPassword);
+    }
+
+    @Then("The User should be redirected to the Homepage with issues")
+    public void theUserShouldBeRedirectedToTheHomepageWithIssues() {
+        System.out.println("Verifying redirection to Homepage with issues");
+        Assert.assertTrue(homePage.isHomePageLogoDisplayed());
+        Assert.assertTrue(driver.getCurrentUrl().contains("/inventory"));
+    }
 }
