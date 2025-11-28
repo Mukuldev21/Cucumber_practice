@@ -48,6 +48,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean navigateToLoginPage() {
-        return loginPageLogo.isDisplayed();
+        //return loginPageLogo.isDisplayed();
+        return wait.until(driver -> loginPageLogo.isDisplayed());
     }
 }

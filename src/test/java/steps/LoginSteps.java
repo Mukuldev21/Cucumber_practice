@@ -67,4 +67,26 @@ public class LoginSteps {
         System.out.println("Verifying error message is displayed");
         Assert.assertTrue(loginPage.isErrorMessageDisplayed());
     }
+
+    @Given("The User is logged in with valid credentials")
+    public void theUserIsLoggedInWithValidCredentials() {
+        System.out.println("Logging in with valid credentials");
+        loginPage.enterUsername(validUsername);
+        loginPage.enterPassword(validPassword);
+        loginPage.clickLoginButton();
+        Assert.assertTrue(homePage.isHomePageLogoDisplayed());
+    }
+
+    @When("The User clicks the logout button")
+    public void theUserClicksTheLogoutButton() {
+        System.out.println("Clicking the logout button");
+        homePage.clickMenuButton();
+        homePage.clickLogoutLink();
+    }
+
+    @Then("The User should be redirected to the Login page")
+    public void theUserShouldBeRedirectedToTheLoginPage() {
+        System.out.println("Verifying redirection to Login Page");
+        Assert.assertTrue(loginPage.navigateToLoginPage());
+    }
 }

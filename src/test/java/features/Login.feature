@@ -18,3 +18,8 @@ Feature: Login Functionality
       | username     | password     |
       | invalidUser  | invalidPass  |
       | testUser     | wrongPass    |
+
+  Scenario: Successfully logout from the application
+    Given The User is logged in with valid credentials
+    When The User clicks the logout button
+    Then The User should be redirected to the Login page
