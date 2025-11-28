@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class HomePage extends BasePage {
 
@@ -31,7 +32,7 @@ public class HomePage extends BasePage {
     public void clickLogoutLink() {
         // Implementation for clicking the logout link
         WebElement logoutLink = driver.findElement(By.id("logout_sidebar_link"));
-        wait.until(driver -> logoutLink.isDisplayed());
+        wait.until(ExpectedConditions.visibilityOf(logoutLink));
         logoutLink.click();
     }
 }

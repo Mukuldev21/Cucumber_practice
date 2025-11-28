@@ -95,4 +95,13 @@ public class LoginSteps {
         System.out.println("Verifying locked out error message is displayed");
         Assert.assertTrue(loginPage.isLockedOutErrorMessageDisplayed());
     }
+
+    @When("The User enters a locked out username and password")
+    public void theUserEntersALockedOutUsernameAndPassword() {
+        System.out.println("Entering locked out username and password");
+        String lockedOutUsername = ConfigReader.getProperty("lockedOutUsername");
+        String lockedOutPassword = ConfigReader.getProperty("lockedOutPassword");
+        loginPage.enterUsername(lockedOutUsername);
+        loginPage.enterPassword(lockedOutPassword);
+    }
 }
