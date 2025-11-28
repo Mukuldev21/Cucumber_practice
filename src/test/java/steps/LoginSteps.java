@@ -89,4 +89,10 @@ public class LoginSteps {
         System.out.println("Verifying redirection to Login Page");
         Assert.assertTrue(loginPage.navigateToLoginPage());
     }
+
+    @Then("A locked out error message should be displayed")
+    public void aLockedOutErrorMessageShouldBeDisplayed() {
+        System.out.println("Verifying locked out error message is displayed");
+        Assert.assertTrue(loginPage.isLockedOutErrorMessageDisplayed());
+    }
 }

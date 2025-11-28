@@ -51,4 +51,9 @@ public class LoginPage extends BasePage {
         //return loginPageLogo.isDisplayed();
         return wait.until(driver -> loginPageLogo.isDisplayed());
     }
+
+    public boolean isLockedOutErrorMessageDisplayed() {
+        String expectedMessage = "Epic sadface: Sorry, this user has been locked out.";
+        return errorMessage.isDisplayed() && errorMessage.getText().equals(expectedMessage);
+    }
 }

@@ -23,3 +23,9 @@ Feature: Login Functionality
     Given The User is logged in with valid credentials
     When The User clicks the logout button
     Then The User should be redirected to the Login page
+
+  Scenario: Login as locked out user
+    Given The User is on the Login page
+    When The User enters a locked out username and password
+    And The User clicks the login button
+    Then A locked out error message should be displayed
